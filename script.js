@@ -90,18 +90,54 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+    let charecters = prompt("How Many Charecter's would you like for your pasword")
+    if (charecters < 8 || charecters > 128) {
+        alert("Error, Try Again")
+    }
+    else {
+        var specialCharacters = confirm("Would you like the password to have special charecters");
+        var numericCharecters = confirm("Would you like your password to have Numeric charecters");
+        var UpperCase = confirm("Would you like Uppercase letters in your password");
+        var lowerCase = confirm("Would you like lowercase letters in your password");
+    };
+    if (!specialCharacters && !numericCharecters && !UpperCase && !lowerCase) {
+        alert("Error, atleast one charecter type must be selected")
+    };
+    var options = {
+        specialCharacterconfirm: specialCharacters,
+        numericCharacterconfirm: numericCharacters,
+        UpperCaseconfirm: UpperCase,
+        lowerCaseconfirm: lowerCase,
+    }
+    return options;
 }
+getPasswordOptions
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+    var randomiser = Math.floor(Math.random() * arr.length);
+    return arr[randomiser];
 }
 
 // Function to generate password with user input
 function generatePassword() {
+    var options = getPasswordOptions();
+    var password = [];
+    if (options.specialCharacterconfirm) {
+        password.push(getRandom(specialCharacters))
+    };
+    if (options.numericCharacterconfirm) {
+        password.push(getRandom(numericCharacters))
+    };
+    if (options.UpperCaseconfirm){
+        password.push(getRandom(numericCharacters))
+    };
+    if (options.lowerCaseconfirm){
+        password.push(getRandom.lowerCase)
+    };
+};
 
-}
+generatePassword
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
