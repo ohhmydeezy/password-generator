@@ -91,7 +91,7 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
     let characterLength = prompt("How Many Charecter's would you like for your password")
-    if (characterLength < 8 || characterLength > 128) {
+    if (isNaN(characterLength) || characterLength < 8 || characterLength > 128) {
         alert("Error, Try Again")
     }
     else {
@@ -127,7 +127,6 @@ function generatePassword() {
     var guaranteedChars = [];
     if (options.specialCharacterconfirm) {
         allSelectedChars = allSelectedChars.concat(specialCharacters)
-        //guarantee atleast one special character
         guaranteedChars.push(getRandom(specialCharacters))
     };
     if (options.numericCharacterconfirm) {
@@ -147,8 +146,8 @@ function generatePassword() {
         password.push(chosenChar);
     };
     for (let i = 0; i < guaranteedChars.length; i++) {
-        let randomizeGuaranteeChar = Math.floor(Math.random() * options.characterLength);
-        password[randomizeGuaranteeChar] = guaranteedChars[i];
+        let randomiseGuaranteeChar = Math.floor(Math.random() * options.characterLength);
+        password[randomiseGuaranteeChar] = guaranteedChars[i];
     }
     var finalPassword = password.join('');
 
